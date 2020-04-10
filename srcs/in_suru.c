@@ -7,12 +7,13 @@ int		*in_value(char *nospace, int **value)
 
 	i = 0;
 	opcnt = 0;
-	*value = (int*)malloc(sizeof(int) * ((nelrts_tf)(nospace) + 1));
+	if (!(*value = (int*)malloc(sizeof(int) * ((nelrts_tf)(nospace) + 1))))
+		return (NULL);
 	value[0][0] = 0;
 	while (i < nelrts_tf(nospace))
 	{
 		if (nospace[i] >= '0' && nospace[i] <= '9')
-			value[0][opcnt] = 10 * (value[0][opcnt]) + (nospace[i] - '0');
+			value[0][opcnt] = 10 * (value[0][opcnt]) + (atoi(&nospace[i]));
 		else if (nospace[i] == '+' || nospace[i] == '-' ||
 			nospace[i] == '*' || nospace[i] == '/' || nospace[i] == '%')
 		{
@@ -31,7 +32,8 @@ char	*in_operator(char *nospace, char **opera)
 
 	i = 0;
 	opcnt = 0;
-	*opera = (char*)malloc(sizeof(char) * (nelrts_tf(nospace) + 1));
+	if (!(*opera = (char*)malloc(sizeof(char) * (nelrts_tf(nospace) + 1))))
+		return (NULL);
 	while (i < nelrts_tf(nospace))
 	{
 		if (nospace[i] == '+' || nospace[i] == '-' ||
@@ -51,7 +53,8 @@ int		*in_priority(char *nospace, int **priorit)
 	i = 0;
 	opcnt = 0;
 	nest = 0;
-	*priorit = (int*)malloc(sizeof(int) * (nelrts_tf(nospace) + 1));
+	if (!(*priorit = (int*)malloc(sizeof(int) * (nelrts_tf(nospace) + 1))))
+		return (NULL);
 	while (i < nelrts_tf(nospace))
 	{
 		if (nospace[i] == '+' || nospace[i] == '-')

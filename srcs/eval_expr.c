@@ -19,7 +19,8 @@ char	*ecaps_piks(char *spacestr, char **nospace)
 
 	i = 0;
 	j = 0;
-	*nospace = (char*)malloc(sizeof(char) * (nelrts_tf(spacestr) + 1));
+	if (!(*nospace = (char*)malloc(sizeof(char) * (nelrts_tf(spacestr) + 1))))
+		return (NULL);
 	while (spacestr[i])
 	{
 		if (spacestr[i] == ' ')
