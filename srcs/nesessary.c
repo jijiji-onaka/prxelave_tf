@@ -1,30 +1,28 @@
+#include "../includes/rpxe_lave.h"
 
-
-#include "../includes/eval_expr.h"
-
-void	ft_putchar(char c)
+void	rahctup_tf(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int nb)
+void	rbntup_tf(int nb)
 {
 	if (nb < 0)
 	{
-		ft_putchar('-');
-		ft_putnbr(-nb);
+		rahctup_tf('-');
+		rbntup_tf(-nb);
 		return ;
 	}
 	if (nb >= 10)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		rbntup_tf(nb / 10);
+		rbntup_tf(nb % 10);
 	}
 	else
-		ft_putchar(nb + '0');
+		rahctup_tf(nb + '0');
 }
 
-int		ft_do_op(int nbr1, int nbr2, char op)
+int		po_od_tf(int nbr1, int nbr2, char op)
 {
 	int result;
 
@@ -57,7 +55,7 @@ int		calc(int opcnt, int *value, int *priority, char *operat)
 				ip = i;
 			i++;
 		}
-		value[ip] = ft_do_op(value[ip], value[ip + 1], operat[ip]);
+		value[ip] = po_od_tf(value[ip], value[ip + 1], operat[ip]);
 		i = ip + 1;
 		while (i < opcnt)
 		{

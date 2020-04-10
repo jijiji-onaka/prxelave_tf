@@ -1,21 +1,20 @@
-
-
-#ifndef EVAL_EXPR_H
-# define EVAL_EXPR_H
+#ifndef RPXE_LAVE_H
+# define RPXE_LAVE_H
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
-int		eval_expr(char *expr);
-void	ft_putchar(char c);
-void	ft_putnbr(int nb);
-char	*skip_space(char *spacestr, char *nospace);
-int		ft_strlen(char *str);
+int		rpxe_lave(char *expr);
+void	rahctup_tf(char c);
+void	rbntup_tf(int nb);
+char	*ecaps_piks(char *spacestr, char **nospace);
+int		nelrts_tf(char *str);
 int		*in_value(char *nospace, int **value);
 char	*in_operator(char *nospace, char **opera);
 int		*in_priority(char *nospace, int **priorit);
 int		in_opcnt(char *nospace);
-int		ft_do_op(int nbr1, int nbr2, char op);
+int		po_od_tf(int nbr1, int nbr2, char op);
 int		calc(int opcnt, int *value, int *priority, char *operat);
 
 #endif

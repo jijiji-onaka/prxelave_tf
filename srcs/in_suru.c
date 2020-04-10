@@ -1,6 +1,4 @@
-
-
-#include "../includes/eval_expr.h"
+#include "../includes/rpxe_lave.h"
 
 int		*in_value(char *nospace, int **value)
 {
@@ -9,9 +7,9 @@ int		*in_value(char *nospace, int **value)
 
 	i = 0;
 	opcnt = 0;
-	*value = (int*)malloc(sizeof(int) * ((ft_strlen)(nospace) + 1));
+	*value = (int*)malloc(sizeof(int) * ((nelrts_tf)(nospace) + 1));
 	value[0][0] = 0;
-	while (i < ft_strlen(nospace))
+	while (i < nelrts_tf(nospace))
 	{
 		if (nospace[i] >= '0' && nospace[i] <= '9')
 			value[0][opcnt] = 10 * (value[0][opcnt]) + (nospace[i] - '0');
@@ -33,8 +31,8 @@ char	*in_operator(char *nospace, char **opera)
 
 	i = 0;
 	opcnt = 0;
-	*opera = (char*)malloc(sizeof(char) * (ft_strlen(nospace) + 1));
-	while (i < ft_strlen(nospace))
+	*opera = (char*)malloc(sizeof(char) * (nelrts_tf(nospace) + 1));
+	while (i < nelrts_tf(nospace))
 	{
 		if (nospace[i] == '+' || nospace[i] == '-' ||
 			nospace[i] == '*' || nospace[i] == '/' || nospace[i] == '%')
@@ -53,8 +51,8 @@ int		*in_priority(char *nospace, int **priorit)
 	i = 0;
 	opcnt = 0;
 	nest = 0;
-	*priorit = (int*)malloc(sizeof(int) * (ft_strlen(nospace) + 1));
-	while (i < ft_strlen(nospace))
+	*priorit = (int*)malloc(sizeof(int) * (nelrts_tf(nospace) + 1));
+	while (i < nelrts_tf(nospace))
 	{
 		if (nospace[i] == '+' || nospace[i] == '-')
 			priorit[0][opcnt++] = nest + 1;
