@@ -1,5 +1,3 @@
-
-
 NAME = eval_expr
 SRCS = srcs/*.c
 OBJS = ./*.o
