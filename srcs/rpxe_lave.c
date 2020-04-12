@@ -30,12 +30,20 @@ char	*ecaps_piks(char *spacestr, char **nospace)
 				i++;
 			}
 		}
-		nospace[0][j] = spacestr[i];
+		(*nospace)[j] = spacestr[i];
 		j++;
 		i++;
 	}
-	nospace[0][j] = '\0';
+	(*nospace)[j] = '\0';
 	return (*nospace);
+}
+
+void	frees(char *nospace, int *value, char *operator, int *priority)
+{
+	free(nospace);
+	free(value);
+	free(operator);
+	free(priority);
 }
 
 int		rpxe_lave(char *str)
@@ -52,9 +60,6 @@ int		rpxe_lave(char *str)
 	priority = in_priority(nospace, &priority);
 	opcnt = in_opcnt(nospace);
 	opcnt = calc(opcnt, value, priority, operator);
-	free(nospace);
-	free(value);
-	free(operator);
-	free(priority);
+	frees(nospace, value, operator, priority);
 	return (opcnt);
 }

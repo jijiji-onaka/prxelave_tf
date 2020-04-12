@@ -9,42 +9,42 @@ int		*in_value(char *nospace, int **value)
 	opcnt = 0;
 	if (!(*value = (int*)malloc(sizeof(int) * ((nelrts_tf)(nospace) + 1))))
 		return (NULL);
-	value[0][0] = 0;
+	(*value)[0] = 0;
 	while (i < nelrts_tf(nospace))
 	{
 		if (nospace[i] >= '0' && nospace[i] <= '9')
-			value[0][opcnt] = 10 * (value[0][opcnt]) + (atoi(&nospace[i]));
+			(*value)[opcnt] = 10 * (*value)[opcnt] + (nospace[i] - '0');
 		else if (nospace[i] == '+' || nospace[i] == '-' ||
 			nospace[i] == '*' || nospace[i] == '/' || nospace[i] == '%')
 		{
 			opcnt++;
-			value[0][opcnt] = 0;
+			(*value)[opcnt] = 0;
 		}
 		i++;
 	}
 	return (*value);
 }
 
-char	*in_operator(char *nospace, char **opera)
+char	*in_operator(char *nospace, char **operato)
 {
 	int		i;
 	int		opcnt;
 
 	i = 0;
 	opcnt = 0;
-	if (!(*opera = (char*)malloc(sizeof(char) * (nelrts_tf(nospace) + 1))))
+	if (!(*operato = (char*)malloc(sizeof(char) * (nelrts_tf(nospace) + 1))))
 		return (NULL);
 	while (i < nelrts_tf(nospace))
 	{
 		if (nospace[i] == '+' || nospace[i] == '-' ||
 			nospace[i] == '*' || nospace[i] == '/' || nospace[i] == '%')
-			opera[0][opcnt++] = nospace[i];
+			(*operato)[opcnt++] = nospace[i];
 		i++;
 	}
-	return (*opera);
+	return (*operato);
 }
 
-int		*in_priority(char *nospace, int **priorit)
+int		*in_priority(char *nospace, int **priority)
 {
 	int i;
 	int opcnt;
@@ -53,21 +53,21 @@ int		*in_priority(char *nospace, int **priorit)
 	i = 0;
 	opcnt = 0;
 	nest = 0;
-	if (!(*priorit = (int*)malloc(sizeof(int) * (nelrts_tf(nospace) + 1))))
+	if (!(*priority = (int*)malloc(sizeof(int) * (nelrts_tf(nospace) + 1))))
 		return (NULL);
 	while (i < nelrts_tf(nospace))
 	{
 		if (nospace[i] == '+' || nospace[i] == '-')
-			priorit[0][opcnt++] = nest + 1;
+			(*priority)[opcnt++] = nest + 1;
 		else if (nospace[i] == '*' || nospace[i] == '/' || nospace[i] == '%')
-			priorit[0][opcnt++] = nest + 2;
+			(*priority)[opcnt++] = nest + 2;
 		else if (nospace[i] == '(')
 			nest += 10;
 		else if (nospace[i] == ')')
 			nest -= 10;
 		i++;
 	}
-	return (*priorit);
+	return (*priority);
 }
 
 int		in_opcnt(char *nospace)
